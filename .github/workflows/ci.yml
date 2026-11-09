@@ -18,7 +18,9 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+        working-directory: studentMicroservices
 
-      - name: Check JavaScript syntax
+      - name: Check application
         run: node --check server.js
+        working-directory: studentMicroservices
