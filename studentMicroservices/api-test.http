@@ -1,0 +1,23 @@
+GET http://localhost:3000/students
+### GET student by ID
+GET http://localhost:3000/students/1
+###
+POST http://localhost:3000/students
+Content-Type: application/json
+
+{
+    "id": 4,
+    "studentName": "John Doe",
+    "totalMarks": 90
+}
+###
+PUT http://localhost:3000/students/1
+Content-Type: application/json
+
+{
+    "studentName": "Jane Smith",
+    "totalMarks": 95
+}
+
+###
+DELETE http://localhost:3000/students/1
