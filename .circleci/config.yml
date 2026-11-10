@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:22.11
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm ci --cache /tmp/npm-cache
+          working_directory: studentMicroservices
+      - run:
+          name: Check application
+          command: node --check server.js
+          working_directory: studentMicroservices
+
+workflows:
+  build-and-test:
+    jobs:
+      - build
