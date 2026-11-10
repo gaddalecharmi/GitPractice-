@@ -9,6 +9,7 @@ let  students=[
 ];
 //get request
 app.get("/students",(req,res)=>{
+        console.log("GET: Fetching all students");
 res.status(200).json(students);
 });
 //get by id
@@ -75,6 +76,17 @@ app.delete("/students/:id",(req,res)=>{
     res.status(200).json({
         message:"Student deleted successfully"
     });
+});
+const client = require('prom-client');
+
+// Collect default Node.js metrics
+client.collectDefaultMetrics();
+
+// Create metrics endpoint
+app.get('/metrics', async (req, res) => {
+    res.set('Content-Type', client.register.contentType);
+
+    res.end(await client.register.metrics());
 });
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`);
